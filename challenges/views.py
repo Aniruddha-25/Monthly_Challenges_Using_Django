@@ -1,4 +1,3 @@
-import calendar
 from datetime import date
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
@@ -34,21 +33,6 @@ months_int = {
     "november": 11,
     "december": 12,
 }
-
-
-def _month_week_breakdown(year: int, month_number: int):
-    weekends = 0
-    weekdays = 0
-    for day, weekday in calendar.Calendar().itermonthdays2(year, month_number):
-        if day == 0:
-            continue
-        if weekday >= 5:
-            weekends += 1
-        else:
-            weekdays += 1
-    return weekends, weekdays
-
-
 def home(request):
     months_data = [
         (month, months_int[month]) for month in month_list.keys()
@@ -64,7 +48,6 @@ def monthly_challenge(request, month):
     current_year = date.today().year
     try:
         month_number = months_int[month]
-        weekend_days, weekday_days = _month_week_breakdown(current_year, month_number)
         return render(
             request,
             "challenges/Monthly_Details.html",
@@ -73,9 +56,6 @@ def monthly_challenge(request, month):
                 "challenge_text": f"This month is {month_list[month]}",
                 "month_int": month_number,
                 "current_year": current_year,
-                "weekend_days": weekend_days,
-                "weekday_days": weekday_days,
-                "total_days": weekend_days + weekday_days,
             },
         )
     except KeyError:
