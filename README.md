@@ -40,15 +40,15 @@ Monthly Challenges is a lightweight Django web application that showcases month-
 
 ### How to Use
 1. Clone the Repository
-git clone <repository-url>
-cd Monthly_Challenges_Using_Django
 
 1. Run the Development Server
-python manage.py runserver
-
+````
+  python manage.py runserver
+````
 1. Open in Browser
-http://127.0.0.1:8000/
-
+````
+  http://127.0.0.1:8000/
+````
 ### Explore
 
 - View all months on the home page
