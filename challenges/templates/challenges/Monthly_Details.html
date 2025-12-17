@@ -1,0 +1,47 @@
+{% extends "Layout.html" %}
+{% load static %}
+
+{% block page_title %}{{ challenge_title }}{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="{% static 'challenges/Monthly_Details_stylesheet.css' %}">
+
+<div class="details-page">
+	<section class="challenge-card">
+		<span class="month-chip">Month {{ month_int }}</span>
+		<h1 class="challenge-title">{{ challenge_title }}</h1>
+		<p class="challenge-text">{{ challenge_text }}</p>
+		<div class="cta-row">
+			<a class="primary-link" href="/">Back To Home</a>
+		</div>
+	</section>
+
+	<section class="support-card">
+		<h2 class="support-title">Month Schedule {{ current_year }}</h2>
+		<div class="stats-grid">
+			<div class="stat-card">
+				<span class="stat-value">{{ weekday_days }}</span>
+				<span class="stat-label">Weekdays</span>
+			</div>
+			<div class="stat-card">
+				<span class="stat-value">{{ weekend_days }}</span>
+				<span class="stat-label">Weekend Days</span>
+			</div>
+			<div class="stat-card">
+				<span class="stat-value">{{ total_days }}</span>
+				<span class="stat-label">Total Days</span>
+			</div>
+		</div>
+		<div class="insights">
+			{% if weekend_days >= 9 %}
+			<p>With extra weekends this month, plan deeper focus sessions or personal milestones.</p>
+			<p>More free days available — ideal for long-term challenges and skill building.</p>
+			{% elif weekend_days == 8 %}
+			<p>A balanced month — stay consistent with small daily progress.</p>
+			{% elif weekend_days >= 6 %}
+			<p>Fewer weekends this month — focus on short, achievable daily goals.</p>
+			{% endif %}
+		</div>
+	</section>
+</div>
+{% endblock %}

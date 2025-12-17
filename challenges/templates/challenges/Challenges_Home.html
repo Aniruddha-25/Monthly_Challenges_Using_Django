@@ -1,0 +1,42 @@
+{% extends "Layout.html" %}
+{% load static %}
+
+{% block page_title %}Home Page{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="{% static 'challenges/Challenges_stylesheet.css' %}">
+
+<div class="container">
+  <div class="header-section">
+    <h1 class="main-title">🎯 Monthly Challenges</h1>
+    <div class="intro-card">
+      <p class="subtitle">Pick a month to explore the challenges and track your progress!</p>
+    </div>
+  </div>
+
+  <!--
+    <ul>
+      <li><a href="/challenges/january">January</a></li>
+      <li><a href="/challenges/february">February</a></li>
+      <li><a href="/challenges/march">March</a></li>
+      <li><a href="/challenges/april">April</a></li>
+      <li><a href="/challenges/may">May</a></li>
+      <li><a href="/challenges/june">June</a></li>
+      <li><a href="/challenges/july">July</a></li>
+      <li><a href="/challenges/august">August</a></li>
+      <li><a href="/challenges/september">September</a></li>
+      <li><a href="/challenges/october">October</a></li>
+      <li><a href="/challenges/november">November</a></li>
+      <li><a href="/challenges/december">December</a></li>
+    </ul>
+  -->
+  
+  <ul class="months-list">
+    {% for month, month_num in months_data %}
+    <li class="month-item">
+      <a href="/challenges/{{ month }}" class="month-link">{{month|title}}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
